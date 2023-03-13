@@ -1,6 +1,6 @@
 ﻿#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
-#include "../prj.lab/Rational/include/Rational/Rational.h"
+#include "../prj.lab/rational/include/rational/rational.hpp"
 #include <iostream>
 
 TEST_CASE("[rational] - Rational ctor") {

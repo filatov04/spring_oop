@@ -1,1 +1,1 @@
-add_library(Rational Rational.cpp include/Rational/Rational.h)
+add_library(rational rational.cpp include/rational/rational.hpp)

@@ -1,2 +1,2 @@
-add_executable(RationalTest RationalTest.cpp)
-target_link_libraries(RationalTest Rational doctest::doctest)
+add_executable(rationaltest rationaltest.cpp)
+target_link_libraries(rationaltest rational doctest::doctest)

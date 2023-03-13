@@ -1,4 +1,4 @@
-#include "include/Rational/Rational.h"
+#include "include/rational/rational.hpp"
 #include <iostream>
 
 std::ostream& operator<<(std::ostream& ostr, const Rational& rhs) {
