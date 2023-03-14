@@ -7,21 +7,17 @@
 
 class Rational {
 public:
-	explicit Rational(int32_t number);
+	Rational(int32_t number);
 	Rational();
 	Rational(int32_t number, int32_t denomi);
-	Rational(Rational& copy);
+	Rational(const Rational& copy);
 	~Rational() = default;
 
-	Rational operator+(const Rational& rhs);
-	Rational operator-(const Rational& rhs);
 	Rational& operator=(const Rational& rhs);
 	Rational& operator+=(const Rational& rhs);
 	Rational& operator-=(const Rational& rhs);
 	Rational& operator*=(const Rational& rhs);
 	Rational& operator/=(const Rational& rhs);
-	Rational operator*(const Rational& rhs);
-	Rational operator/(const Rational& rhs);
 	Rational& operator++();
 	Rational& operator++(int32_t);
 	Rational& operator--();
@@ -60,6 +56,11 @@ private:
 		b /= c;
 	}
 };
+
+Rational operator+(const Rational& lhs, const Rational& rhs);
+Rational operator-(const Rational& lhs, const Rational& rhs);
+Rational operator*(const Rational& lhs, const Rational& rhs);
+Rational operator/(const Rational& lhs, const Rational& rhs);
 
 std::ostream& operator<<(std::ostream& ostr, const Rational& rhs);
 std::istream& operator>>(std::istream& istr, Rational& rhs);

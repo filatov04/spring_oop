@@ -19,7 +19,7 @@ Rational::Rational() {
 	denom = 1;
 }
 
-Rational::Rational(const int32_t number, const int32_t denomi) {
+Rational::Rational( int32_t number, int32_t denomi) {
 	if (denom == 0) {
 		throw std::invalid_argument("Division by zero");
 	}
@@ -37,37 +37,9 @@ Rational::Rational(const int32_t number, const int32_t denomi) {
 	}
 }
 
-Rational::Rational(Rational& copy) {
+Rational::Rational(const Rational& copy) {
 	num = copy.num;
 	denom = copy.denom;
-}
-
-Rational Rational::operator+(const Rational& rhs) {
-	Rational temp;
-	if (denom == rhs.denom) {
-		temp.num = num + rhs.num;
-		temp.denom = rhs.denom;
-	}
-	else {
-		temp.num = num * rhs.denom + rhs.num * denom;
-		temp.denom = rhs.denom * denom;
-	}
-	reduce(temp.num, temp.denom);
-	return temp;
-}
-
-Rational Rational::operator-(const Rational& rhs) {
-	Rational temp;
-	if (denom == rhs.denom) {
-		temp.num = num - rhs.num;
-		temp.denom = rhs.denom;
-	}
-	else {
-		temp.num = num * rhs.denom - rhs.num * denom;
-		temp.denom = rhs.denom * denom;
-	}
-	reduce(temp.num, temp.denom);
-	return temp;
 }
 
 Rational& Rational::operator=(const Rational& rhs) {
@@ -118,22 +90,6 @@ Rational& Rational::operator /= (const Rational& rhs) {
 	return *this;
 }
 
-Rational Rational::operator*(const Rational& rhs) {
-	Rational temp;
-	temp.num = num * rhs.num;
-	temp.denom = denom * rhs.denom;
-	reduce(temp.num, temp.denom);
-	return temp;
-}
-
-Rational Rational::operator/(const Rational& rhs) {
-	Rational temp;
-	temp.num = num * rhs.denom;
-	temp.denom = denom * rhs.num;
-	reduce(temp.num, temp.denom);
-	return temp;
-}
-
 Rational& Rational::operator++() {
 	num = num + denom;
 	return *this;
@@ -156,6 +112,31 @@ Rational& Rational:: operator--(int32_t) {
 	num--;
 	denom--;
 	return temp;
+}
+
+Rational operator+(const Rational& lhs, const Rational& rhs) {
+	Rational sum(lhs);
+	sum += rhs;
+	return sum;
+
+}
+
+Rational operator-(const Rational& lhs, const Rational& rhs) {
+	Rational sum(lhs);
+	sum -= rhs;
+	return sum;
+}
+
+Rational operator*(const Rational& lhs, const Rational& rhs) {
+	Rational sum(lhs);
+	sum *= rhs;
+	return sum;
+}
+
+Rational operator/(const Rational& lhs, const Rational& rhs) {
+	Rational sum(lhs);
+	sum /= rhs;
+	return sum;
 }
 
 bool Rational::operator==(const Rational& rhs) {
