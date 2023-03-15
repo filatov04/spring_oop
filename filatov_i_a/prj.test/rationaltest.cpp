@@ -24,13 +24,10 @@ TEST_CASE("[rational] - Rational ctor") {
     CHECK((Rational(7, 3) * Rational(9, 5) == Rational(-21, -5)));
     CHECK((Rational(7, 3) / Rational(9, 5) == Rational(35, 27)));
     CHECK((Rational(7, 3) / Rational(9, 5) == Rational(-35, -27)));
-    //CHECK((Rational(7, 3) / Rational(9, 5) == Rational(70, 54)));  works wtih INT value, not with Rational
-
     CHECK((Rational(7, 1) == int(7)));
     CHECK((Rational(14, 2) == int(7)));
     CHECK((Rational(7, 3) + int(9) == Rational(34, 3)));
     CHECK((Rational(7, 3) + int(9) == Rational(-68, -6)));
-    //CHECK((Rational(7, 3) + int(9) == Rational(68, 6)));  works wtih Rational value, not with INT
     CHECK((Rational(17, 3) - int(3) == Rational(8, 3)));
     CHECK((Rational(17, 3) - int(3) == Rational(-16, -6)));
     CHECK((Rational(17, 3) - int(3) == Rational(16, 6)));
@@ -40,13 +37,19 @@ TEST_CASE("[rational] - Rational ctor") {
     CHECK((Rational(17, 3) / int(3) == Rational(17, 9)));
     CHECK((Rational(17, 3) / int(3) == Rational(-17, -9)));
     CHECK((Rational(17, 3) / int(3) == Rational(34, 18)));
-
-    /*CHECK_THROWS(Rational(1, 0));
-    CHECK_THROWS(Rational('a', 1));
-    CHECK_THROWS(Rational(1, 'a'));
-    CHECK_THROWS(Rational('a', 'a'));
-    CHECK_THROWS(Rational(7, 3) / Rational(9, 0));
-    CHECK_THROWS(Rational(7, 3) / Rational(0, 9));*/
+    CHECK((Rational(7, 3) + int(9) == Rational(34, 3)));
+    CHECK((Rational(7, 3) + int(9) == Rational(-68, -6)));
+    CHECK((int(3) - Rational(17,3) == Rational(8, 3)));
+    CHECK((int(3) - Rational(17, 3) == Rational(-16, -6)));
+    CHECK((int(3) - Rational(17, 3) == Rational(16, 6)));
+    CHECK((int(3) * Rational(17, 3) == Rational(17, 1)));
+    CHECK((int(3) * Rational(17, 3) == Rational(34, 2)));
+    CHECK((int(3) * Rational(17, 3) == Rational(-17, -1)));
+    CHECK((int(3) / Rational(17, 3) == Rational(17, 9)));
+    CHECK((int(3) / Rational(17, 3) == Rational(-17, -9)));
+    CHECK((int(3) / Rational(17, 3) == Rational(34, 18)));
+    CHECK((int(9) + Rational(7, 3) == Rational(34, 3)));
+    CHECK((int(9) + Rational(7, 3) == Rational(-68, -6)));
 
     Rational a(17, 3);
     Rational b;

@@ -19,9 +19,33 @@ Rational::Rational() {
 	denom = 1;
 }
 
-bool Rational::operator==(int& rhs) {
+bool Rational::operator==(const int32_t& rhs) {
 	Rational temp = Rational(rhs);
 	return operator==(temp);
+}
+
+Rational operator+(const int32_t& lhs, const Rational& rhs) {
+	Rational sum(rhs);
+	sum += lhs;
+	return sum;
+}
+
+Rational operator-(const int32_t& lhs, const Rational& rhs) {
+	Rational sum(rhs);
+	sum -= lhs;
+	return sum;
+}
+
+Rational operator*(const int32_t& lhs, const Rational& rhs) {
+	Rational sum(rhs);
+	sum *= lhs;
+	return sum;
+}
+
+Rational operator/(const int32_t& lhs, const Rational& rhs) {
+	Rational sum(rhs);
+	sum /= lhs;
+	return sum;
 }
 
 Rational::Rational( int32_t number, int32_t denomi) {
