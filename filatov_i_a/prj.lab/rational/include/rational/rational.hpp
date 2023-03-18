@@ -72,10 +72,6 @@ Rational operator+(const Rational& lhs, const int32_t& rhs);
 Rational operator-(const Rational& lhs, const int32_t& rhs);
 Rational operator*(const Rational& lhs, const int32_t& rhs);
 Rational operator/(const Rational& lhs, const int32_t& rhs);
-Rational operator+(const int32_t& lhs, const Rational& rhs);
-Rational operator-(const int32_t& lhs, const Rational& rhs);
-Rational operator*(const int32_t& lhs, const Rational& rhs);
-Rational operator/(const int32_t& lhs, const Rational& rhs);
 
 std::ostream& operator<<(std::ostream& ostr, const Rational& rhs);
 std::istream& operator>>(std::istream& istr, Rational& rhs);

@@ -24,30 +24,6 @@ bool Rational::operator==(const int32_t& rhs) {
 	return operator==(temp);
 }
 
-Rational operator+(const int32_t& lhs, const Rational& rhs) {
-	Rational sum(rhs);
-	sum += lhs;
-	return sum;
-}
-
-Rational operator-(const int32_t& lhs, const Rational& rhs) {
-	Rational sum(rhs);
-	sum -= lhs;
-	return sum;
-}
-
-Rational operator*(const int32_t& lhs, const Rational& rhs) {
-	Rational sum(rhs);
-	sum *= lhs;
-	return sum;
-}
-
-Rational operator/(const int32_t& lhs, const Rational& rhs) {
-	Rational sum(rhs);
-	sum /= lhs;
-	return sum;
-}
-
 Rational::Rational( int32_t number, int32_t denomi) {
 	if (denom == 0) {
 		throw std::invalid_argument("Division by zero");
