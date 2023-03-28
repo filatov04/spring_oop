@@ -18,10 +18,22 @@ public:
 	Rational& operator-=(const Rational& rhs);
 	Rational& operator*=(const Rational& rhs);
 	Rational& operator/=(const Rational& rhs);
-	Rational& operator+=(const int& rhs);
-	Rational& operator-=(const int& rhs);
-	Rational& operator*=(const int& rhs);
-	Rational& operator/=(const int& rhs);
+
+	Rational& operator+(const Rational& rhs);
+	Rational& operator-(const Rational& rhs);
+	Rational& operator*(const Rational& rhs);
+	Rational& operator/(const Rational& rhs);
+
+	Rational& operator+=(const int32_t& rhs);
+	Rational& operator-=(const int32_t& rhs);
+	Rational& operator*=(const int32_t& rhs);
+	Rational& operator/=(const int32_t& rhs);
+
+	Rational& operator+(const int32_t& rhs);
+	Rational& operator-(const int32_t& rhs);
+	Rational& operator*(const int32_t& rhs);
+	Rational& operator/(const int32_t& rhs);
+
 	Rational& operator++();
 	Rational& operator++(int32_t);
 	Rational& operator--();
@@ -35,7 +47,7 @@ public:
 	bool operator<=(const Rational& rhs);
 	bool operator>=(const Rational& rhs);
 
-	
+
 	bool operator==(const int32_t& rhs);
 
 
@@ -64,14 +76,10 @@ private:
 	}
 };
 
-Rational operator+(const Rational& lhs, const Rational& rhs);
-Rational operator-(const Rational& lhs, const Rational& rhs);
-Rational operator*(const Rational& lhs, const Rational& rhs);
-Rational operator/(const Rational& lhs, const Rational& rhs);
-Rational operator+(const Rational& lhs, const int32_t& rhs);
-Rational operator-(const Rational& lhs, const int32_t& rhs);
-Rational operator*(const Rational& lhs, const int32_t& rhs);
-Rational operator/(const Rational& lhs, const int32_t& rhs);
+Rational operator+(const int32_t& lhs, const Rational& rhs);
+Rational operator-(const int32_t& lhs, const Rational& rhs);
+Rational operator*(const int32_t& lhs, const Rational& rhs);
+Rational operator/(const int32_t& lhs, const Rational& rhs);
 
 std::ostream& operator<<(std::ostream& ostr, const Rational& rhs);
 std::istream& operator>>(std::istream& istr, Rational& rhs);

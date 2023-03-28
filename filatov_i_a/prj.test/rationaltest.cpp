@@ -12,7 +12,6 @@ TEST_CASE("[rational] - Rational ctor") {
     CHECK((Rational(10, -6) == Rational(-5, 3)));
     CHECK((Rational(-10, -6) == Rational(5, 3)));
     CHECK((Rational(-10, 6) == Rational(10, -6)));
-
     CHECK((Rational(7, 3) + Rational(9, 5) == Rational(62, 15)));
     CHECK((Rational(7, 3) + Rational(9, 5) == Rational(124, 30)));
     CHECK((Rational(7, 3) + Rational(9, 5) == Rational(-62, -15)));
@@ -39,17 +38,24 @@ TEST_CASE("[rational] - Rational ctor") {
     CHECK((Rational(17, 3) / int(3) == Rational(34, 18)));
     CHECK((Rational(7, 3) + int(9) == Rational(34, 3)));
     CHECK((Rational(7, 3) + int(9) == Rational(-68, -6)));
-    CHECK((int(3) - Rational(17,3) == Rational(8, 3)));
-    CHECK((int(3) - Rational(17, 3) == Rational(-16, -6)));
-    CHECK((int(3) - Rational(17, 3) == Rational(16, 6)));
+    CHECK((int(9) + Rational(7, 3) == Rational(34, 3)));
+    CHECK((int(9) + Rational(7, 3) == Rational(-68, -6)));
+    CHECK((int(3) - Rational(17, 3) == Rational(-8, 3)));
+    CHECK((int(3) - Rational(17, 3) == Rational(-16, 6)));
     CHECK((int(3) * Rational(17, 3) == Rational(17, 1)));
     CHECK((int(3) * Rational(17, 3) == Rational(34, 2)));
     CHECK((int(3) * Rational(17, 3) == Rational(-17, -1)));
-    CHECK((int(3) / Rational(17, 3) == Rational(17, 9)));
-    CHECK((int(3) / Rational(17, 3) == Rational(-17, -9)));
-    CHECK((int(3) / Rational(17, 3) == Rational(34, 18)));
-    CHECK((int(9) + Rational(7, 3) == Rational(34, 3)));
-    CHECK((int(9) + Rational(7, 3) == Rational(-68, -6)));
+    CHECK((int(3) / Rational(17, 3) == Rational(9, 17)));
+    CHECK((int(3) / Rational(17, 3) == Rational(-9, -17)));
+    CHECK((int(3) / Rational(17, 3) == Rational(18, 34)));
+    CHECK((int(3) + Rational(17, 3) == Rational(26, 3)));
+    CHECK((int(3) + Rational(17, 3) == Rational(-52, -6)));
+    CHECK((Rational(17, 3) > Rational(34, 18) == true));
+    CHECK((Rational(5, 3) > Rational(34, 18) == false));
+    CHECK((Rational(-10, 6) > Rational(34, 18) == false));
+    CHECK((Rational(7, 3) > Rational(9, 18) == true));
+    CHECK((Rational(7, 3) == Rational(14, 6) == true));
+    CHECK((Rational(7, 3) != Rational(9, 18) == true));
 
     Rational a(17, 3);
     Rational b;

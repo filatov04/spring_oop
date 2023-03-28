@@ -24,14 +24,14 @@ bool Rational::operator==(const int32_t& rhs) {
 	return operator==(temp);
 }
 
-Rational::Rational( int32_t number, int32_t denomi) {
+Rational::Rational(int32_t number, int32_t denomi) {
 	if (denom == 0) {
 		throw std::invalid_argument("Division by zero");
 	}
 	num = number;
 	denom = denomi;
 	if (num != 0) {
-		 reduce(num, denom);
+		reduce(num, denom);
 	}
 	else {
 		denom = 1;
@@ -60,31 +60,62 @@ Rational& Rational::operator*=(const int32_t& rhs) {
 }
 
 Rational& Rational::operator/=(const int32_t& rhs) {
-	return operator/=(Rational(rhs));
+	if (rhs == 0) {
+		std::invalid_argument("Divison by Zero");
+	}
+	else {
+		return operator/=(Rational(rhs));
+	}
 }
 
-Rational operator+(const Rational& lhs, const int32_t& rhs) {
+Rational& Rational::operator+(const int32_t& rhs) {
+	return operator+=(Rational(rhs));
+}
+
+Rational& Rational::operator-(const int32_t& rhs) {
+	return operator-=(Rational(rhs));
+}
+
+Rational& Rational::operator*(const int32_t& rhs) {
+	return operator*=(Rational(rhs));
+}
+
+Rational& Rational::operator/(const int32_t& rhs) {
+	if (rhs == 0) {
+		std::invalid_argument("Divison by Zero");
+	}
+	else {
+		return operator/=(Rational(rhs));
+	}
+}
+
+Rational operator+(const int32_t& lhs, const Rational& rhs) {
 	Rational sum(lhs);
 	sum += rhs;
 	return sum;
 }
 
-Rational operator-(const Rational& lhs, const int32_t& rhs) {
+Rational operator-(const int32_t& lhs, const Rational& rhs) {
 	Rational sum(lhs);
 	sum -= rhs;
 	return sum;
 }
 
-Rational operator*(const Rational& lhs, const int32_t& rhs) {
+Rational operator*(const int32_t& lhs, const Rational& rhs) {
 	Rational sum(lhs);
 	sum *= rhs;
 	return sum;
 }
 
-Rational operator/(const Rational& lhs, const int32_t& rhs) {
-	Rational sum(lhs);
-	sum /= rhs;
-	return sum;
+Rational operator/(const int32_t& lhs, const Rational& rhs) {
+	if (lhs == 0) {
+		std::invalid_argument("Divison by Zero");
+	}
+	else {
+		Rational temp(lhs);
+		temp /= rhs;
+		return temp;
+	}
 }
 
 Rational& Rational::operator=(const Rational& rhs) {
@@ -94,7 +125,7 @@ Rational& Rational::operator=(const Rational& rhs) {
 	return *this;
 }
 
-Rational& Rational::operator +=(const Rational& rhs) {
+Rational& Rational::operator+=(const Rational& rhs) {
 	if (denom == rhs.denom) {
 		num += rhs.denom;
 	}
@@ -106,7 +137,7 @@ Rational& Rational::operator +=(const Rational& rhs) {
 	return *this;
 }
 
-Rational& Rational::operator -=(const Rational& rhs) {
+Rational& Rational::operator-=(const Rational& rhs) {
 	if (denom == rhs.denom) {
 		num -= rhs.denom;
 	}
@@ -125,7 +156,48 @@ Rational& Rational::operator*=(const Rational& rhs) {
 	return *this;
 }
 
-Rational& Rational::operator /= (const Rational& rhs) {
+Rational& Rational::operator/=(const Rational& rhs) {
+	if (rhs.num == 0) {
+		throw std::invalid_argument("Division by zero is prohibited");
+	}
+	num *= rhs.denom;
+	denom *= rhs.num;
+	reduce(num, denom);
+	return *this;
+}
+
+Rational& Rational::operator +(const Rational& rhs) {
+	if (denom == rhs.denom) {
+		num += rhs.denom;
+	}
+	else {
+		num = num * rhs.denom + rhs.num * denom;
+		denom = rhs.denom * denom;
+	}
+	reduce(num, denom);
+	return *this;
+}
+
+Rational& Rational::operator-(const Rational& rhs) {
+	if (denom == rhs.denom) {
+		num -= rhs.denom;
+	}
+	else {
+		num = num * rhs.denom - rhs.num * denom;
+		denom = rhs.denom * denom;
+	}
+	reduce(num, denom);
+	return *this;
+}
+
+Rational& Rational::operator*(const Rational& rhs) {
+	num *= rhs.num;
+	denom *= rhs.denom;
+	reduce(num, denom);
+	return *this;
+}
+
+Rational& Rational::operator/(const Rational& rhs) {
 	if (rhs.num == 0) {
 		throw std::invalid_argument("Division by zero is prohibited");
 	}
