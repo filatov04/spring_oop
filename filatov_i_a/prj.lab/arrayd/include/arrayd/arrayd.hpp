@@ -10,13 +10,13 @@
 class ArrayD {
 public:
 	ArrayD();
-	explicit ArrayD(ptrdiff_t ssize);
+	explicit ArrayD(std::ptrdiff_t ssize);
 	ArrayD(const ArrayD& other);
 	~ArrayD();
 	ArrayD& operator=(const ArrayD& rhs);
 
-	[[nodiscard]] double& operator[](const ptrdiff_t i);
-	[[nodiscard]] const double& operator[](const ptrdiff_t i) const;
+	[[nodiscard]] double& operator[](const std::ptrdiff_t i);
+	[[nodiscard]] const double& operator[](const std::ptrdiff_t i) const;
 
 	[[nodiscard]] std::ptrdiff_t ssize() const noexcept;
 	void insert(const std::ptrdiff_t i, const double value);
@@ -27,8 +27,8 @@ public:
 
 private:
 	double* coords;//pointer to a dynamic array
-	ptrdiff_t size;//current array sizeint
-	ptrdiff_t capacity;
+	std::ptrdiff_t size;//current array sizeint
+	std::ptrdiff_t capacity;
 };
 
 

@@ -89,6 +89,18 @@ Rational& Rational::operator/(const int32_t& rhs) {
 	}
 }
 
+Rational operator-(const Rational& rhs) {
+	Rational temp;
+	temp -= rhs;
+	return temp;
+}
+
+Rational operator+(const Rational& rhs) {
+	Rational temp;
+	temp += rhs;
+	return rhs;
+}
+
 Rational operator+(const int32_t& lhs, const Rational& rhs) {
 	Rational sum(lhs);
 	sum += rhs;

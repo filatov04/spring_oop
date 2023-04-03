@@ -14,7 +14,7 @@ public:
 	~Rational() = default;
 
 	Rational& operator=(const Rational& rhs);
-	Rational& operator+=(const Rational& rhs);
+	Rational& operator+=(const Rational& rhs); 
 	Rational& operator-=(const Rational& rhs);
 	Rational& operator*=(const Rational& rhs);
 	Rational& operator/=(const Rational& rhs);
@@ -75,6 +75,9 @@ private:
 		b /= c;
 	}
 };
+
+Rational operator-(const Rational& rhs);
+Rational operator+(const Rational& rhs);
 
 Rational operator+(const int32_t& lhs, const Rational& rhs);
 Rational operator-(const int32_t& lhs, const Rational& rhs);

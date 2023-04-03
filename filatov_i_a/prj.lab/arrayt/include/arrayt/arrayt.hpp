@@ -105,10 +105,10 @@ void ArrayT<T>::insert(const std::ptrdiff_t index, const T value) {
 	if (index < 0 || index >(size - 1)) { throw std::invalid_argument("Invalid index"); }
 	size++;
 	T* temp = new T[size];
-	for (ptrdiff_t i = 0; i < size - 1; i++) {
+	for (std::ptrdiff_t i = 0; i < size - 1; i++) {
 		temp[i] = coords[i];
 	}
-	for (ptrdiff_t i = size - 1; i > index; i--) {
+	for (std::ptrdiff_t i = size - 1; i > index; i--) {
 		temp[i] = temp[i - 1];
 	}
 	temp[index] = value;
@@ -146,10 +146,10 @@ void ArrayT<T>::remove(const std::ptrdiff_t i) {
 	if (i < 0 || i >(size - 1)) { throw std::invalid_argument("Invalid index"); }
 	size--;
 	T* temp = new T[size];
-	for (ptrdiff_t j = 0; j < i; j++) {
+	for (std::ptrdiff_t j = 0; j < i; j++) {
 		temp[j] = coords[j];
 	}
-	for (ptrdiff_t j = i; j < size; j++) {
+	for (std::ptrdiff_t j = i; j < size; j++) {
 		temp[j] = coords[j + 1];
 	}
 	delete[] coords;
