@@ -3,7 +3,7 @@
 #ifndef ARRAYT_ARRAYT_HPP_20230329
 #define ARRAYT_ARRAYT_HPP_20230329
 
-#include <sstream>S
+#include <sstream>
 #include <iostream>
 #include <cstdint>
 
