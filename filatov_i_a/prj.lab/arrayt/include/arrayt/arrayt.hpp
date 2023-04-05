@@ -44,7 +44,7 @@ ArrayT<T>::ArrayT(std::ptrdiff_t ssize) {
 	size = ssize;
 	capacity = ssize;
 	coords = new T[ssize];
-	for (int i = 0; i < ssize; i++) {
+	for (std::ptrdiff_t i = 0; i < ssize; i++) {
 		coords[i] = 0;
 	}
 }
@@ -54,7 +54,7 @@ ArrayT<T>::ArrayT(const ArrayT<T>& other) {
 	size = other.size;
 	capacity = other.capacity;
 	coords = new T[other.capacity];
-	for (ptrdiff_t i = 0; i < other.size; i++) {
+	for (std::ptrdiff_t i = 0; i < other.size; i++) {
 		coords[i] = other.coords[i];
 	}
 }
