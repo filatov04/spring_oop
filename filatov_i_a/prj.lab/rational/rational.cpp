@@ -61,7 +61,7 @@ Rational& Rational::operator*=(const int32_t& rhs) {
 
 Rational& Rational::operator/=(const int32_t& rhs) {
 	if (rhs == 0) {
-		std::invalid_argument("Divison by Zero");
+		throw std::invalid_argument("Divison by Zero");
 	}
 	else {
 		return operator/=(Rational(rhs));
@@ -82,7 +82,7 @@ Rational& Rational::operator*(const int32_t& rhs) {
 
 Rational& Rational::operator/(const int32_t& rhs) {
 	if (rhs == 0) {
-		std::invalid_argument("Divison by Zero");
+		throw std::invalid_argument("Divison by Zero");
 	}
 	else {
 		return operator/=(Rational(rhs));
@@ -121,7 +121,7 @@ Rational operator*(const int32_t& lhs, const Rational& rhs) {
 
 Rational operator/(const int32_t& lhs, const Rational& rhs) {
 	if (lhs == 0) {
-		std::invalid_argument("Divison by Zero");
+		throw std::invalid_argument("Divison by Zero");
 	}
 	else {
 		Rational temp(lhs);

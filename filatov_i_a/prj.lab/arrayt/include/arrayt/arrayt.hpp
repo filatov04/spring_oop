@@ -41,6 +41,9 @@ ArrayT<T>::ArrayT() {
 
 template<typename T>
 ArrayT<T>::ArrayT(std::ptrdiff_t ssize) {
+	if (ssize < 0) {
+		throw std::invalid_argument("Wrong size");
+	}
 	size = ssize;
 	capacity = ssize;
 	coords = new T[ssize];
@@ -81,7 +84,7 @@ T& ArrayT<T>::operator[](const std::ptrdiff_t index) {
 		return coords[index];
 	}
 	else {
-		throw std::invalid_argument("IndexOutOfRange");
+		throw std::out_of_range("IndexOutOfRange");
 	}
 }
 
@@ -91,7 +94,7 @@ const T& ArrayT<T>::operator[](const std::ptrdiff_t index) const {
 		return coords[index];
 	}
 	else {
-		throw std::invalid_argument("IndexOutOfRange");
+		throw std::out_of_range("IndexOutOfRange");
 	}
 }
 
@@ -102,24 +105,19 @@ std::ptrdiff_t ArrayT<T>::ssize() {
 
 template<typename T>
 void ArrayT<T>::insert(const std::ptrdiff_t index, const T value) {
-	if (index < 0 || index >(size - 1)) { throw std::invalid_argument("Invalid index"); }
-	size++;
-	T* temp = new T[size];
-	for (std::ptrdiff_t i = 0; i < size - 1; i++) {
-		temp[i] = coords[i];
+	if (index < 0 || index >(size - 1)) { throw std::out_of_range("Invalid index"); }
+	resize(ssize() + 1);
+	for (std::ptrdiff_t i = ssize() - 1; i > index; i--) {
+		coords[i] = coords[i - 1];
 	}
-	for (std::ptrdiff_t i = size - 1; i > index; i--) {
-		temp[i] = temp[i - 1];
-	}
-	temp[index] = value;
-	delete[] coords;
-	coords = temp;
+	coords[index] = value;
+
 }
 
 template<typename T>
 void ArrayT<T>::resize(const std::ptrdiff_t new_size) {
 	if (new_size <= 0) {
-		throw std::invalid_argument("Wrong position");
+		throw std::out_of_range("Wrong position");
 	}
 	if (new_size > capacity) {
 		T* new_coords = new T[new_size * 2];
@@ -143,17 +141,11 @@ void ArrayT<T>::resize(const std::ptrdiff_t new_size) {
 
 template<typename T>
 void ArrayT<T>::remove(const std::ptrdiff_t i) {
-	if (i < 0 || i >(size - 1)) { throw std::invalid_argument("Invalid index"); }
-	size--;
-	T* temp = new T[size];
-	for (std::ptrdiff_t j = 0; j < i; j++) {
-		temp[j] = coords[j];
+	if (i < 0 || i >(size - 1)) { throw std::out_of_range("Invalid index"); }
+	for (std::ptrdiff_t j = i; j < size - 1; j++) {
+		coords[j] = coords[j + 1];
 	}
-	for (std::ptrdiff_t j = i; j < size; j++) {
-		temp[j] = coords[j + 1];
-	}
-	delete[] coords;
-	coords = temp;
+	resize(ssize() - 1);
 }
 
 

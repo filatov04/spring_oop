@@ -21,9 +21,7 @@ ArrayD::ArrayD(const ArrayD& other) {
 	size = other.size;
 	capacity = other.capacity;
 	coords = new double[other.capacity];
-	for (std::ptrdiff_t i = 0; i < other.size; i++) {
-		coords[i] = other.coords[i];
-	}
+	std::copy(other.coords, other.coords+other.capacity, coords);
 }
 
 
@@ -43,21 +41,21 @@ ArrayD& ArrayD::operator=(const ArrayD& rhs) {
 }
 
 [[nodiscard]] double& ArrayD::operator[](const std::ptrdiff_t i) {
-	if (i <= size) {
+	if (i <= size && i >= 0) {
 		return coords[i];
 	}
 	else {
-		throw std::invalid_argument("IndexOutOfRange");
+		throw std::out_of_range("IndexOutOfRange");
 	}
 }
 
 
 [[nodiscard]] const double& ArrayD::operator[](const std::ptrdiff_t i) const {
-	if (i <= size) {
+	if (i <= size && i >= 0) {
 		return coords[i];
 	}
 	else {
-		throw std::invalid_argument("IndexOutOfRange");
+		throw std::out_of_range("IndexOutOfRange");
 	}
 }
 
@@ -68,7 +66,7 @@ ArrayD& ArrayD::operator=(const ArrayD& rhs) {
 
 
 void ArrayD::insert(const std::ptrdiff_t i, const double value) {
-	if (i < 0 || i >(size - 1)) { throw std::invalid_argument("Invalid index"); }
+	if (i < 0 || i >(size - 1)) { throw std::out_of_range("Invalid index"); }
 	size++;
 	double* temp = new double[size];
 	for (std::ptrdiff_t j = 0; j < size - 1; j++) {
@@ -109,15 +107,9 @@ void ArrayD::resize(const std::ptrdiff_t new_size) {
 
 
 void ArrayD::remove(const std::ptrdiff_t i) {
-	if (i < 0 || i >(size - 1)) { throw std::invalid_argument("Invalid index"); }
-	size--;
-	double* temp = new double[size];
-	for (std::ptrdiff_t j = 0; j < i; j++) {
-		temp[j] = coords[j];
+	if (i < 0 || i >(size - 1)) { throw std::out_of_range("Invalid index"); }
+	for (std::ptrdiff_t j = i; j < size - 1; j++) {
+		coords[j] = coords[j + 1];
 	}
-	for (std::ptrdiff_t j = i; j < size; j++) {
-		temp[i] = coords[i + 1];
-	}
-	delete[] coords;
-	coords = temp;
+	resize(ssize() - 1);
 }
