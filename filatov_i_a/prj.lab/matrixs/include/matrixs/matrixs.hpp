@@ -10,13 +10,13 @@ class MatrixS {
 public:
 	using SizeType = std::tuple<std::ptrdiff_t, std::ptrdiff_t>;
 public:
-	MatrixS();
+	explicit MatrixS(const SizeType& size = { 0, 0 });
 	MatrixS(const MatrixS& other);
 	MatrixS(std::ptrdiff_t m, std::ptrdiff_t n);
 	~MatrixS();
 
-	[[nodiscard]] std::ptrdiff_t nRow();
-	[[nodiscard]] std::ptrdiff_t nCol();
+	[[nodiscard]] std::ptrdiff_t nRows() const noexcept;
+	[[nodiscard]] std::ptrdiff_t nCols() const noexcept;
 
 	[[nodiscard]] int& at(const SizeType& elem);
 	[[nodiscard]] const int& at(const SizeType& elem) const;
