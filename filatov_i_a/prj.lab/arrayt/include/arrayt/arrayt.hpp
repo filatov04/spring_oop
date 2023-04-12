@@ -16,10 +16,10 @@ public:
 	ArrayT& operator=(const ArrayT& rhs);
 	~ArrayT();
 
-	T& operator[](const std::ptrdiff_t index);
-	const T& operator[](const std::ptrdiff_t index) const;
+	[[nodiscard]] T& operator[](const std::ptrdiff_t index);
+	[[nodiscard]] const T& operator[](const std::ptrdiff_t index) const;
 
-	std::ptrdiff_t ssize();
+	[[nodiscard]] std::ptrdiff_t ssize();
 	void insert(const std::ptrdiff_t index, const T value);
 	void resize(const std::ptrdiff_t new_size);
 	void remove(const std::ptrdiff_t i);
@@ -79,7 +79,7 @@ ArrayT<T>& ArrayT<T>::operator=(const ArrayT<T>& rhs) {
 }
 
 template<typename T>
-T& ArrayT<T>::operator[](const std::ptrdiff_t index) {
+[[nodiscard]] T& ArrayT<T>::operator[](const std::ptrdiff_t index) {
 	if (index <= size) {
 		return coords[index];
 	}
@@ -89,7 +89,7 @@ T& ArrayT<T>::operator[](const std::ptrdiff_t index) {
 }
 
 template<typename T>
-const T& ArrayT<T>::operator[](const std::ptrdiff_t index) const {
+[[nodiscard]] const T& ArrayT<T>::operator[](const std::ptrdiff_t index) const {
 	if (index <= size) {
 		return coords[index];
 	}
@@ -99,7 +99,7 @@ const T& ArrayT<T>::operator[](const std::ptrdiff_t index) const {
 }
 
 template<typename T>
-std::ptrdiff_t ArrayT<T>::ssize() {
+[[nodiscard]] std::ptrdiff_t ArrayT<T>::ssize() {
 	return size;
 }
 

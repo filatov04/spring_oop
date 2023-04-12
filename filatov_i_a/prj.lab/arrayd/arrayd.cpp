@@ -9,6 +9,9 @@ ArrayD::ArrayD() {
 }
 
 ArrayD::ArrayD(std::ptrdiff_t ssize) {
+	if (ssize < 0) {
+		throw std::invalid_argument("Wrong size");
+	}
 	size = ssize;
 	capacity = ssize;
 	coords = new double[ssize];
