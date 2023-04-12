@@ -31,6 +31,7 @@ TEST_CASE("Testing own library Double DynamicArray numbers") {
 		CHECK(a[0] == 1);
 		a.remove(3);
 		CHECK(a[2] == 3);
+		CHECK_THROWS(a.remove(-1));
 	}
 	SUBCASE("Insert") {
 		a.insert(1, 11);
@@ -38,5 +39,9 @@ TEST_CASE("Testing own library Double DynamicArray numbers") {
 		CHECK(a.ssize() == 6);
 		CHECK(a[2] == 1);
 		CHECK(a[5] == 4);
+		a.insert(0, 100);
+		CHECK(a[0] == 100);
+		CHECK(a.ssize() == 7);
+		CHECK_THROWS(a.insert(7, 18));
 	}
 }

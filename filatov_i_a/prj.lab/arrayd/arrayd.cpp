@@ -43,8 +43,8 @@ ArrayD& ArrayD::operator=(const ArrayD& rhs) {
 	return *this;
 }
 
-[[nodiscard]] double& ArrayD::operator[](const std::ptrdiff_t i) {
-	if (i <= size && i >= 0) {
+double& ArrayD::operator[](const std::ptrdiff_t i) {
+	if (i < size && i >= 0) {
 		return coords[i];
 	}
 	else {
@@ -53,8 +53,8 @@ ArrayD& ArrayD::operator=(const ArrayD& rhs) {
 }
 
 
-[[nodiscard]] const double& ArrayD::operator[](const std::ptrdiff_t i) const {
-	if (i <= size && i >= 0) {
+const double& ArrayD::operator[](const std::ptrdiff_t i) const {
+	if (i < size && i >= 0) {
 		return coords[i];
 	}
 	else {
@@ -63,7 +63,7 @@ ArrayD& ArrayD::operator=(const ArrayD& rhs) {
 }
 
 
-[[nodiscard]] std::ptrdiff_t ArrayD::ssize() const noexcept {
+std::ptrdiff_t ArrayD::ssize() const noexcept {
 	return size;
 }
 
