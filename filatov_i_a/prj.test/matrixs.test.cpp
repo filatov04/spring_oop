@@ -29,5 +29,19 @@ TEST_CASE("Testing own library Rational numbers") {
 	b.resize(l);
 	CHECK(b.nRows() == 3);
 	CHECK(b.nCols() == 3);
-
+	CHECK(b.at(2, 2) == 0);
+	int k = 0;
+	for (std::ptrdiff_t i = 0; i < b.nRows(); i++) {
+		for (std::ptrdiff_t j = 0; j < b.nCols(); j++) {
+			b.at(i, j) = k;
+			k++;
+		}
+	}
+	b.resize(5, 5);
+	CHECK(b.at(4, 4) == 0);
+	CHECK(b.at(0, 0) == 0);
+	CHECK(b.at(0, 1) == 1);
+	CHECK(b.at(2, 2) == 8);
+	CHECK(b.at(2, 3) == 0);
+	CHECK_THROWS(b.at(7, 7));
 }

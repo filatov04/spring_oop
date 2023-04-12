@@ -133,7 +133,7 @@ void MatrixS::resize(const std::ptrdiff_t i, const std::ptrdiff_t j) {
 	*this = temp;
 }
 
-[[nodiscard]] const MatrixS::SizeType& MatrixS::ssize() const noexcept {
+const MatrixS::SizeType& MatrixS::ssize() const noexcept {
 	return SizeType(row_, col_);
 }
 
