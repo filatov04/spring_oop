@@ -69,7 +69,9 @@ std::ptrdiff_t ArrayD::ssize() const noexcept {
 
 
 void ArrayD::insert(const std::ptrdiff_t i, const double value) {
-	if (i < 0 || i >(size - 1)) { throw std::out_of_range("Invalid index"); }
+	if (i < 0 || i >(size - 1)) { 
+		throw std::out_of_range("Invalid index");
+	}
 	size++;
 	double* temp = new double[size];
 	for (std::ptrdiff_t j = 0; j < size - 1; j++) {

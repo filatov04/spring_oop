@@ -13,13 +13,13 @@ public:
 	ArrayT();
 	explicit ArrayT(std::ptrdiff_t ssize);
 	ArrayT(const ArrayT<T>& other);
-	ArrayT& operator=(const ArrayT& rhs);
+	ArrayT& operator=(const ArrayT<T>& rhs);
 	~ArrayT();
 
 	[[nodiscard]] T& operator[](const std::ptrdiff_t index);
 	[[nodiscard]] const T& operator[](const std::ptrdiff_t index) const;
 
-	[[nodiscard]] std::ptrdiff_t ssize();
+	[[nodiscard]] std::ptrdiff_t ssize() const noexcept;
 	void insert(const std::ptrdiff_t index, const T value);
 	void resize(const std::ptrdiff_t new_size);
 	void remove(const std::ptrdiff_t i);
@@ -80,7 +80,7 @@ ArrayT<T>& ArrayT<T>::operator=(const ArrayT<T>& rhs) {
 
 template<typename T>
 [[nodiscard]] T& ArrayT<T>::operator[](const std::ptrdiff_t index) {
-	if (index <= size) {
+	if (index < size && index >= 0) {
 		return coords[index];
 	}
 	else {
@@ -90,7 +90,7 @@ template<typename T>
 
 template<typename T>
 [[nodiscard]] const T& ArrayT<T>::operator[](const std::ptrdiff_t index) const {
-	if (index <= size) {
+	if (index < size && index >= 0) {
 		return coords[index];
 	}
 	else {
@@ -99,18 +99,26 @@ template<typename T>
 }
 
 template<typename T>
-[[nodiscard]] std::ptrdiff_t ArrayT<T>::ssize() {
+[[nodiscard]] std::ptrdiff_t ArrayT<T>::ssize() const noexcept {
 	return size;
 }
 
 template<typename T>
 void ArrayT<T>::insert(const std::ptrdiff_t index, const T value) {
-	if (index < 0 || index >(size - 1)) { throw std::out_of_range("Invalid index"); }
-	resize(ssize() + 1);
-	for (std::ptrdiff_t i = ssize() - 1; i > index; i--) {
-		coords[i] = coords[i - 1];
+	if (index < 0 || index >(size - 1)) {
+		throw std::out_of_range("Invalid index");
 	}
-	coords[index] = value;
+	size++;
+	T* temp = new T[size];
+	for (std::ptrdiff_t j = 0; j < size - 1; j++) {
+		temp[j] = coords[j];
+	}
+	for (std::ptrdiff_t j = size - 1; j > index; j--) {
+		temp[j] = temp[j - 1];
+	}
+	temp[index] = value;
+	delete[] coords;
+	coords = temp;
 
 }
 
@@ -149,4 +157,4 @@ void ArrayT<T>::remove(const std::ptrdiff_t i) {
 }
 
 
-#endif;
+#endif

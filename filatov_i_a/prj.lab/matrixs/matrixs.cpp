@@ -1,7 +1,7 @@
 #include <matrixs/matrixs.hpp>
 #include <iostream>
 
-MatrixS::MatrixS(const SizeType& size) {
+MatrixS::MatrixS(const SizeType& size) :  {
 	if (std::get<0>(size) < 0 || std::get<1>(size) < 0) {
 		throw std::invalid_argument("Rows or columns can not be negative");
 	}

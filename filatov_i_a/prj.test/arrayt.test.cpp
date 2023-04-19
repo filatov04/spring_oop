@@ -38,6 +38,16 @@ TEST_CASE("Testing own library of template array") {
 		CHECK(a.ssize() == 6);
 		CHECK(a[2] == 1);
 		CHECK(a[5] == 4);
+		CHECK(a.ssize() == 6);
+		a.insert(0, 12);
+		CHECK(a[0] == 12);
+		CHECK(a.ssize() == 7);
 	}
-
+	/*SUBCASE("Operator []") {
+		CHECK(a.ssize() == 6);
+		CHECK_THROWS(a[-1]);
+		CHECK_THROWS(a[6]);
+		CHECK(a[5] == 4);
+	}*/
+	
 }

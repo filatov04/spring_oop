@@ -20,6 +20,7 @@ TEST_CASE("Testing own library Double DynamicArray numbers") {
 		CHECK(a.ssize() == 3);
 		a.resize(8);
 		CHECK(a[7] == 0);
+		CHECK_THROWS(a[8]);
 		CHECK_THROWS(a[9]);
 	}
 	SUBCASE("Remove") {
@@ -44,4 +45,5 @@ TEST_CASE("Testing own library Double DynamicArray numbers") {
 		CHECK(a.ssize() == 7);
 		CHECK_THROWS(a.insert(7, 18));
 	}
+	
 }
