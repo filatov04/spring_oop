@@ -25,17 +25,16 @@ bool Rational::operator==(const int32_t& rhs) {
 }
 
 Rational::Rational(int32_t number, int32_t denomi) {
-	if (denomi <= 0 ) {
-		throw std::invalid_argument("Division by zero");
+	if (denomi < 0) {
+		denomi *= -1;
+		number *= -1;
+	}
+	if (denomi == 0) {
+		throw std::invalid_argument("Divide by zero exception");
 	}
 	num = number;
 	denom = denomi;
-	if (num != 0) {
-		reduce(num, denom);
-	}
-	else {
-		denom = 1;
-	}
+	reduce(num, denom);
 }
 
 Rational::Rational(const Rational& copy) {
@@ -220,7 +219,7 @@ Rational& Rational::operator++() {
 	return *this;
 }
 
-Rational& Rational::operator++(int32_t) {
+Rational Rational::operator++(int32_t) {
 	Rational temp(*this);
 	num++;
 	denom++;
@@ -232,7 +231,7 @@ Rational& Rational::operator--() {
 	return *this;
 }
 
-Rational& Rational:: operator--(int32_t) {
+Rational Rational:: operator--(int32_t) {
 	Rational temp(*this);
 	num--;
 	denom--;

@@ -35,9 +35,9 @@ public:
 	Rational& operator/(const int32_t& rhs);
 
 	Rational& operator++();
-	Rational& operator++(int32_t);
+	Rational operator++(int32_t);
 	Rational& operator--();
-	Rational& operator--(int32_t);
+	Rational operator--(int32_t);
 
 
 	bool operator==(const Rational& rhs);
