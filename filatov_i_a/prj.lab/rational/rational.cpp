@@ -322,22 +322,56 @@ std::ostream& Rational::writeTo(std::ostream& ostr) const {
 }
 
 std::istream& Rational::readFrom(std::istream& istr) {
+	char sym('-');
+	while (std::isspace(istr.peek())) {
+		sym = istr.get();
+	}
 	int32_t number(0);
 	int32_t denomi(0);
-	char comma(0);
-	istr >> number >> comma >> denomi;
-	if (istr.good()) {
-		if (Rational::slash == comma) {
-			if (denomi <= 0) {
-				throw std::invalid_argument("Please, write the positive denom");
-			}
-			num = number;
-			denom = denomi;
-			reduce(num, denom);
-		}
-		else {
+	sym = '-';
+	bool isNeg(false);
+	if (istr.peek() == '-') {
+		isNeg = true;
+		sym = istr.get();
+	}
+
+	while (std::isdigit(istr.peek())) {
+		sym = istr.get();
+		number *= 10;
+		number += static_cast<int>(sym - '0');
+	}
+	if (sym == '-') {
+		istr.setstate(std::ios_base::failbit);
+		return istr;
+	}
+
+	if (istr.peek() != '/') {
+		istr.setstate(std::ios_base::failbit);
+		return istr;
+	}
+	sym = istr.get();
+
+	while (std::isdigit(istr.peek())) {
+		sym = istr.get();
+		denomi *= 10;
+		denomi += static_cast<int>(sym - '0');
+	}
+	if (sym == '/') {
+		istr.setstate(std::ios_base::failbit);
+		return istr;
+	}
+
+	if (istr.good() || istr.eof()) {
+		if (denomi == 0) {
 			istr.setstate(std::ios_base::failbit);
+			return istr;
 		}
+		num = number;
+		denom = denomi;
+		if (isNeg) {
+			num *= -1;
+		}
+		reduce(num,denom);
 	}
 	return istr;
 }
