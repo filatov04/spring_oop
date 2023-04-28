@@ -2,11 +2,11 @@
 #include <iostream>
 
 std::ostream& operator<<(std::ostream& ostr, const Rational& rhs) {
-	return rhs.writeTo(ostr);
+	return rhs.WriteTo(ostr);
 }
 
 std::istream& operator>>(std::istream& istr, Rational& rhs) {
-	return rhs.readFrom(istr);
+	return rhs.ReadFrom(istr);
 }
 
 Rational::Rational(int32_t number) {
@@ -316,12 +316,12 @@ bool Rational::operator>=(const Rational& rhs) {
 	return !operator<(rhs);
 }
 
-std::ostream& Rational::writeTo(std::ostream& ostr) const {
+std::ostream& Rational::WriteTo(std::ostream& ostr) const noexcept {
 	ostr << num << slash << denom;
 	return ostr;
 }
 
-std::istream& Rational::readFrom(std::istream& istr) {
+std::istream& Rational::ReadFrom(std::istream& istr) {
 	char sym('-');
 	while (std::isspace(istr.peek())) {
 		sym = istr.get();

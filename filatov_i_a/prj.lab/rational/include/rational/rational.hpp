@@ -51,8 +51,8 @@ public:
 	bool operator==(const int32_t& rhs);
 
 
-	std::ostream& writeTo(std::ostream& ostr) const;
-	std::istream& readFrom(std::istream& istr);
+	std::ostream& WriteTo(std::ostream& ostr) const noexcept;
+	std::istream& ReadFrom(std::istream& istr);
 
 
 	static const char slash{ '/' };
