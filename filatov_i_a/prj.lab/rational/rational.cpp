@@ -85,8 +85,8 @@ Rational& Rational::operator/(const int32_t& rhs) {
 }
 
 Rational operator-(const Rational& rhs) {
-	Rational temp;
-	temp -= rhs;
+	Rational temp(-1,1);
+	temp *= rhs;
 	return temp;
 }
 

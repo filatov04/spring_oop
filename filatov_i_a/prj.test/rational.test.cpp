@@ -50,13 +50,21 @@ TEST_CASE("[rational] - Rational ctor") {
     CHECK((int(3) / Rational(17, 3) == Rational(18, 34)));
     CHECK((int(3) + Rational(17, 3) == Rational(26, 3)));
     CHECK((int(3) + Rational(17, 3) == Rational(-52, -6)));
-    CHECK((Rational(17, 3) > Rational(34, 18) == true));
-    CHECK((Rational(5, 3) > Rational(34, 18) == false));
-    CHECK((Rational(-10, 6) > Rational(34, 18) == false));
-    CHECK((Rational(7, 3) > Rational(9, 18) == true));
+    CHECK((Rational(17, 3) < Rational(34, 18) == false));
+    CHECK((Rational(5, 3) == Rational(34, 18) == false));
+    CHECK((Rational(-10, 6) <= Rational(34, 18) == true));
+    CHECK((Rational(7, 3) >= Rational(9, 18) == true));
     CHECK((Rational(7, 3) == Rational(14, 6) == true));
     CHECK((Rational(7, 3) != Rational(9, 18) == true));
-
+    CHECK((Rational(17, 3) > Rational(34, 18) == true));
+    CHECK((Rational(5, 3) < Rational(34, 18) == true));
+    CHECK((Rational(-10, 6) > Rational(34, 18) == false));
+    CHECK((Rational(7, 3) > Rational(9, 18) == true));
+    Rational x(1, 1);
+    x -= Rational(17, 3);
+    CHECK(x == Rational(-14, 3));
+    CHECK(x == (-(-x)));
+    
     Rational a(17, 3);
     Rational b;
     SUBCASE("adding int value") {
@@ -94,3 +102,7 @@ TEST_CASE("[rational] - Rational ctor") {
         CHECK(a == Rational(0, 3));
     }
 }
+
+
+
+ 
