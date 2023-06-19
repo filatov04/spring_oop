@@ -3,7 +3,7 @@ find_package(rapidjson CONFIG REQUIRED)
 
 find_package(Doxygen)
 
-set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/../Documentation/Doxyfile)
+set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/Documentation/Doxyfile)
 set(DOXYGEN_CONFIGURED_INPUT ${DOXYGEN_IN})
 
 add_custom_target(doc ALL
@@ -37,4 +37,4 @@ install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/config" DESTINATION .)
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/Release/out" DESTINATION .)
 
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../Documentation/rtf/refman.rtf DESTINATION .)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Documentation/rtf/refman.rtf DESTINATION .)
