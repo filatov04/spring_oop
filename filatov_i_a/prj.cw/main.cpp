@@ -1,8 +1,11 @@
 ﻿#include "SysCalculator\include\SysCalculator.hpp"
 #include <rapidjson/document.h>
 #include <iostream>
+#include <Windows.h>
 
 int main(int argc, char* argv[]) {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	SysCalculator a;
 	rapidjson::Document document;
 	if (argc < 3) {
