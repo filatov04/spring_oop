@@ -1,15 +1,15 @@
 #include <include/SysCalculator.hpp>
 #include <rapidjson/document.h>
 #include <iostream>
-#include <Windows.h>
+#include <locale>
 
 int main(int argc, char* argv[]) {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	std::locale::global(std::locale(""));
+	std::wstring s = L"Введите в параметры командной строки директории к файлам для чтениия и записи данных!";
 	SysCalculator a;
 	rapidjson::Document document;
 	if (argc < 3) {
-		std::cout << "Введите в параметры командной строки директории к файлам для чтениия и записи данных!";
+		std::wcout << s;
 		return 0;
 	}
 	std::string inputs = argv[1];
