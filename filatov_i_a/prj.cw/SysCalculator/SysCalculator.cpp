@@ -1,4 +1,4 @@
-#include "include\SysCalculator.hpp"
+#include <include/SysCalculator.hpp>
 #include <iostream>
 
 std::ostream& operator<<(std::ostream& ostr, const SysCalculator& rhs) {

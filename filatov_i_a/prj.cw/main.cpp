@@ -1,4 +1,4 @@
-﻿#include "SysCalculator\include\SysCalculator.hpp"
+#include <include/SysCalculator.hpp>
 #include <rapidjson/document.h>
 #include <iostream>
 #include <Windows.h>
@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
 	SysCalculator a;
 	rapidjson::Document document;
 	if (argc < 3) {
-		std::cout << "Введите в параметры командной строки директории к папкам для чтениия и записи данных!";
+		std::cout << "Введите в параметры командной строки директории к файлам для чтениия и записи данных!";
 		return 0;
 	}
 	std::string inputs = argv[1];
