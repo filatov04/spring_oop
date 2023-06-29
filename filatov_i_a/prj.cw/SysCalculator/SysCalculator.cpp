@@ -52,18 +52,12 @@ void SysCalculator::LaTeX_SysCalculator() {
 
 
 void SysCalculator::setExample(std::string& temp_num) {
-	if (Format_check(temp_num) == false) {
-		std::cout << "Нарушен формат входных данных, проверьте введенный пример!";
-		throw std::invalid_argument("Incorrect format");
-	}
-	else {
 		num = temp_num;
-	}
 }
 
 void SysCalculator::openFile(const std::string& filename) {
 	output.open(filename);
-}
+}   
 
 void SysCalculator::closeFile() {
 	if (output.is_open()) {
@@ -81,13 +75,12 @@ bool SysCalculator::File_is_open() {
 }
 
 int64_t SysCalculator::getSystem() {
-	if (system <= 0) throw std::invalid_argument("System can not be less zero or equal zero");
 	return system;
 }
 
 void SysCalculator::setSystem(int64_t& s) {
-	LaTex_preamble();
 	system = s;
+	LaTex_preamble();
 	LaTeX_SysCalculator();
 }
 
@@ -259,7 +252,7 @@ bool SysCalculator::Format_check(std::string temp_string) {
 }
 
 bool SysCalculator::IsRussian(char& symbol) {
-	std::string russian{ "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" };
+	std::string russian{ "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзиклмнопрстуфхцчшщъыьэюя" };
 	for (int32_t i = 0; i < russian.size(); i++) {
 		if (symbol == russian[i]) {
 			return true;
@@ -269,7 +262,7 @@ bool SysCalculator::IsRussian(char& symbol) {
 }
 
 void SysCalculator::IsSpace(std::string& s) {
-	s.erase(std::remove_if(s.begin(), s.end(), std::isspace), s.end());
+	s.erase(std::remove(s.begin(), s.end(), ' '), s.end());
 }
 
 double SysCalculator::ToDecimal(std::string s) {
