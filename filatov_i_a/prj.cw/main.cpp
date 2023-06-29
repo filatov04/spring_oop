@@ -47,21 +47,23 @@ int main(int argc, char* argv[]) {
 			if (document.HasMember("expression") && document["expression"].IsString()) {
 				expr = document["expression"].GetString();
 				if (a.Format_check(expr) == false) {
-					std::cout << "Неправильно ввденен формат входных данных, исправьте выражение и попробуйте снова";
+					std::cout << "Неправильно ввденен формат входных данных, исправьте выражение и попробуйте снова\n";
 					throw std::invalid_argument("Incorrect format");
 				}
 				else {
 					a.setExample(expr);
 				}
 				if (expr == "" || expr == " ") {
-					std::cout << "Проверьте " << count << ".json файл, в ключе \"expression\" вы оставили пустое значение";
+					std::cout << "Проверьте " << count << ".json файл, в ключе \"expression\" вы оставили пустое значение\n";
+					datajson.close();
+					a.closeFile();
 					continue;
 				}
 			}
 			if (document.HasMember("system") && document["system"].IsInt()) {
 				sys = static_cast<int64_t>(document["system"].GetInt());
 				if (sys <= 0) {
-					std::cout << "Значение системы счисления не может быть меньше или равно 0";
+					std::cout << "Значение системы счисления не может быть меньше или равно 0\n";
 					throw std::invalid_argument("System can not be less zero or equal zero");
 				}
 				else {
